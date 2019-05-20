@@ -3,7 +3,7 @@ import Header from './components/Header';
 import LeftSideBar from './components/LeftSideBar';
 import RandomYmd from './components/RandomYmd';
 import RandomString from './components/RandomString';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -32,7 +32,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <HashRouter>
         <div className="App">
           {
             this.state.feature.filter((item) => item.isActive === true).map((item, index) => <Header feature={item} key={index} />)
@@ -52,14 +52,14 @@ class App extends Component {
                 </ul>
               </div>
               <div className="col-10 mt-5">
-                <Route path="/RandomYmd" component={RandomYmd} />
-                <Route path="/RandomString" component={RandomString} />
+                <HashRouter path="/RandomYmd" component={RandomYmd} />
+                <HashRouter path="/RandomString" component={RandomString} />
               </div>
             </div>
           </div>
 
         </div>
-      </Router>
+      </HashRouter>
     )
   }
 }
