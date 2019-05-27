@@ -1,6 +1,10 @@
 .header-height {
-    height: 10vh;
+    height: 75px;
     color: white;
+}
+
+.content__height {
+    height: 80vh
 }
 
 .content__shadow {

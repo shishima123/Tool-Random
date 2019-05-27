@@ -17,6 +17,8 @@ class RandomString extends Component {
     }
 
     onRandomString() {
+        const { onRandom, onChangeHeader, header } = this.props;
+
         let prefix = this.prefixRef.current.value;
         let from = Number(this.fromRef.current.value);
         let to = Number(this.toRef.current.value);
@@ -45,13 +47,14 @@ class RandomString extends Component {
                     result += prefix + number + '\r';
                 }
             } else {
-                for (let i = 0; i < qty; i++) {
+                for (let i = 1; i < qty; i++) {
                     result += prefix + i + '\r';
                 }
             }
         }
 
-        this.props.onRandom(result);
+        onRandom(result);
+        onChangeHeader(header[1]);
     }
 
     onChangeLen() {

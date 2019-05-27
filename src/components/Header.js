@@ -8,12 +8,9 @@ class Header extends Component {
         let headerName = feature.name;
         return (
             <div className={className}>
-                <div className="row w-100 h-100 mx-0">
-                    <div className="col-2 text-center d-flex align-items-center">
-                        <h4>Tool Random</h4>
-                    </div>
-                    <div className="col-10 d-flex justify-content-center align-items-center">
-                        <h4>{headerName}</h4>
+                <div className="row h-100">
+                    <div className="col-12 d-flex justify-content-center align-items-center">
+                        <h2 className="m-0 font-weight-bold">{headerName}</h2>
                     </div>
                 </div>
             </div>

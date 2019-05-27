@@ -14,6 +14,8 @@ class RandomYmd extends Component {
     }
 
     onRandomYmd() {
+        const { onRandom, onChangeHeader, header } = this.props;
+
         let YearFr = Number(this.YearFrRef.current.value);
         let YearTo = Number(this.YearToRef.current.value);
         let MonthFr = Number(this.MonthFrRef.current.value);
@@ -51,7 +53,8 @@ class RandomYmd extends Component {
                 result += year.toString() + month.toString() + day.toString() + "\r";
             }
         }
-        this.props.onRandom(result);
+        onRandom(result);
+        onChangeHeader(header[2]);
     }
 
     chkValidateInput(type, From, To) {

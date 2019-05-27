@@ -10,26 +10,25 @@ class App extends Component {
     super();
     this.state = {
       feature: [
-        { "name": "Random String", "isActive": true, "bgColor": "bg-primary", "textColor": "text-primary" },
-        { "name": "Random Ymd", "isActive": false, "bgColor": "bg-success", "textColor": "text-success" },
+        { "name": "Tool Random", "isActive": true, "bgColor": "bg-danger" },
+        { "name": "Random String", "isActive": false, "bgColor": "bg-primary" },
+        { "name": "Random Year-Month-Day", "isActive": false, "bgColor": "bg-success" },
       ],
       result: ''
     }
-    this.onClickFeature = this.onClickFeature.bind(this);
+    this.onChangeHeader = this.onChangeHeader.bind(this);
     this.onRandom = this.onRandom.bind(this);
   }
 
-  onClickFeature(item) {
-    return () => {
-      const { feature } = this.state;
-      const index = feature.indexOf(item);
-      let state = feature;
-      state.map((item) => item.isActive = false)
-      state[index].isActive = true;
-      this.setState({
-        feature: feature
-      });
-    }
+  onChangeHeader(item) {
+    const { feature } = this.state;
+    const index = feature.indexOf(item);
+    let state = feature;
+    state.map((item) => item.isActive = false)
+    state[index].isActive = true;
+    this.setState({
+      feature: feature
+    });
   }
 
   onRandom(result) {
@@ -43,13 +42,13 @@ class App extends Component {
           this.state.feature.filter((item) => item.isActive === true).map((item, index) => <Header feature={item} key={index} />)
         }
 
-        <div className="container-fluid mt-4">
-          <div className="row d-flex justify-content-center">
-            <RandomString onRandom={this.onRandom} />
+        <div className="container-fluid mt-4 content__height">
+          <div className="row d-flex justify-content-center h-100">
+            <RandomString onRandom={this.onRandom} onChangeHeader={this.onChangeHeader} header={this.state.feature} />
             <TextArea
               result={this.state.result}
               onRandom={this.onRandom} />
-            <RandomYmd onRandom={this.onRandom} />
+            <RandomYmd onRandom={this.onRandom} onChangeHeader={this.onChangeHeader} header={this.state.feature} />
           </div>
         </div>
 
