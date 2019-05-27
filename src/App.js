@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import LeftSideBar from './components/LeftSideBar';
 import RandomYmd from './components/RandomYmd';
 import RandomString from './components/RandomString';
-import { HashRouter } from "react-router-dom";
+import TextArea from './components/TextArea';
+
 
 class App extends Component {
   constructor() {
@@ -11,10 +11,12 @@ class App extends Component {
     this.state = {
       feature: [
         { "name": "Random String", "isActive": true, "bgColor": "bg-primary", "textColor": "text-primary" },
-        { "name": "Random Ymd", "isActive": false, "bgColor": "bg-success", "textColor": "text-success" }
-      ]
+        { "name": "Random Ymd", "isActive": false, "bgColor": "bg-success", "textColor": "text-success" },
+      ],
+      result: ''
     }
     this.onClickFeature = this.onClickFeature.bind(this);
+    this.onRandom = this.onRandom.bind(this);
   }
 
   onClickFeature(item) {
@@ -30,36 +32,28 @@ class App extends Component {
     }
   }
 
+  onRandom(result) {
+    this.setState({ result: result });
+  }
+
   render() {
     return (
-      <HashRouter>
-        <div className="App">
-          {
-            this.state.feature.filter((item) => item.isActive === true).map((item, index) => <Header feature={item} key={index} />)
-          }
+      <div className="App">
+        {
+          this.state.feature.filter((item) => item.isActive === true).map((item, index) => <Header feature={item} key={index} />)
+        }
 
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-2 sidebar__height px-0">
-                <ul className="nav flex-column">
-                  {this.state.feature.map((item, index) =>
-                    <LeftSideBar
-                      feature={item}
-                      key={index}
-                      onClickFeature={this.onClickFeature(item)}
-                    />
-                  )}
-                </ul>
-              </div>
-              <div className="col-10 mt-5">
-                <HashRouter path="/RandomYmd" component={RandomYmd} />
-                <HashRouter path="/RandomString" component={RandomString} />
-              </div>
-            </div>
+        <div className="container-fluid mt-4">
+          <div className="row d-flex justify-content-center">
+            <RandomString onRandom={this.onRandom} />
+            <TextArea
+              result={this.state.result}
+              onRandom={this.onRandom} />
+            <RandomYmd onRandom={this.onRandom} />
           </div>
-
         </div>
-      </HashRouter>
+
+      </div>
     )
   }
 }

@@ -4,7 +4,7 @@ import "./component.css";
 class Header extends Component {
     render() {
         const { feature } = this.props;
-        let className = "container-fluid header-height " + feature.bgColor;
+        let className = "container-fluid header-height content__shadow " + feature.bgColor;
         let headerName = feature.name;
         return (
             <div className={className}>

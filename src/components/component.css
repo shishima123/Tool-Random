@@ -3,11 +3,24 @@
     color: white;
 }
 
-.sidebar__height {
-    height: 90vh;
-    background-color: #212529;
+.content__shadow {
+    box-shadow: 10px 10px 6px -6px #777;
 }
 
-.input__width {
-    width: 400px;
+.input__border-radius {
+    border-radius: unset;
+}
+
+.btn__RandomYmd-margin {
+    margin-top: 27px;
+}
+
+input,
+textarea {
+    text-align: center;
+}
+
+.lable__input-width {
+    width: 100px;
+    justify-content: center;
 }
