@@ -6,6 +6,7 @@ class RandomString extends Component {
         super(props);
         this.state = {
             length: 3,
+            isDisable: false
         }
         this.prefixRef = React.createRef();
         this.fromRef = React.createRef();
@@ -14,6 +15,7 @@ class RandomString extends Component {
         this.qtyRef = React.createRef();
         this.onRandomString = this.onRandomString.bind(this);
         this.onChangeLen = this.onChangeLen.bind(this);
+        this.onChangeSelectBox = this.onChangeSelectBox.bind(this);
     }
 
     onRandomString() {
@@ -47,7 +49,7 @@ class RandomString extends Component {
                     result += prefix + number + '\r';
                 }
             } else {
-                for (let i = 1; i < qty; i++) {
+                for (let i = from; i <= to; i++) {
                     result += prefix + i + '\r';
                 }
             }
@@ -72,6 +74,17 @@ class RandomString extends Component {
             length = lenPrefix + lenQty;
         }
         this.setState({ length: length })
+    }
+
+    onChangeSelectBox(e) {
+        let isDisable;
+        if (e.target.value === 'order_list') {
+            isDisable = true;
+        } else {
+            isDisable = false;
+        }
+            this.setState({isDisable: isDisable})
+
     }
 
     render() {
@@ -105,7 +118,7 @@ class RandomString extends Component {
                     <div className="input-group-prepend">
                         <label className="input-group-text lable__input-width">Type</label>
                     </div>
-                    <select className="form-control" ref={this.typeRef}>
+                    <select className="form-control" ref={this.typeRef} onChange={this.onChangeSelectBox}>
                         <option value='random'>Random</option>
                         <option value='order_list'>Order List</option>
                     </select>
@@ -115,7 +128,7 @@ class RandomString extends Component {
                     <div className="input-group-prepend">
                         <span className="input-group-text lable__input-width">Quantity</span>
                     </div>
-                    <input type="text" className="form-control" defaultValue="10" ref={this.qtyRef} onChange={this.onChangeLen} />
+                    <input type="text" className="form-control" defaultValue="10" ref={this.qtyRef} onChange={this.onChangeLen} disabled={(this.state.isDisable) ? true : '' }/>
                 </div>
 
                 <div className="input-group d-flex justify-content-center">
