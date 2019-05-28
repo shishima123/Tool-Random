@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './component.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 class RandomYmd extends Component {
     constructor(props) {
@@ -14,7 +16,7 @@ class RandomYmd extends Component {
     }
 
     onRandomYmd() {
-        const { onRandom, onChangeHeader, header } = this.props;
+        const { onRandom, onChangeHeader, header, onNotify } = this.props;
 
         let YearFr = Number(this.YearFrRef.current.value);
         let YearTo = Number(this.YearToRef.current.value);
@@ -55,6 +57,7 @@ class RandomYmd extends Component {
         }
         onRandom(result);
         onChangeHeader(header[2]);
+        onNotify();
     }
 
     chkValidateInput(type, From, To) {
@@ -79,29 +82,29 @@ class RandomYmd extends Component {
             <div className="col-3 text-right content__shadow bg-white py-4 rounded">
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text lable__input-width" >Year</span>
+                        <span className="input-group-text lable__input-width cloudy-knoxville-gradient" >Year</span>
                     </div>
-                    <input type="text" className="form-control input__border-radius" defaultValue="2019" ref={this.YearFrRef} />
+                    <input type="text" className="form-control input__border-radius_right" defaultValue="2019" ref={this.YearFrRef} />
                     <span>&nbsp;&nbsp;~&nbsp;&nbsp;</span>
-                    <input type="text" className="form-control input__border-radius" defaultValue="2019" ref={this.YearToRef} />
+                    <input type="text" className="form-control input__border-radius_left" defaultValue="2019" ref={this.YearToRef} />
                 </div>
 
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text lable__input-width">Month</span>
+                        <span className="input-group-text lable__input-width cloudy-knoxville-gradient">Month</span>
                     </div>
-                    <input type="text" className="form-control input__border-radius" defaultValue="1" ref={this.MonthFrRef} />
+                    <input type="text" className="form-control input__border-radius_right" defaultValue="1" ref={this.MonthFrRef} />
                     <span>&nbsp;&nbsp;~&nbsp;&nbsp;</span>
-                    <input type="text" className="form-control input__border-radius" defaultValue="12" ref={this.MonthToRef} />
+                    <input type="text" className="form-control input__border-radius_left" defaultValue="12" ref={this.MonthToRef} />
                 </div>
 
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text lable__input-width">Day</span>
+                        <span className="input-group-text lable__input-width cloudy-knoxville-gradient">Day</span>
                     </div>
-                    <input type="text" className="form-control input__border-radius" defaultValue="1" ref={this.DayFrRef} />
+                    <input type="text" className="form-control input__border-radius_right" defaultValue="1" ref={this.DayFrRef} />
                     <span>&nbsp;&nbsp;~&nbsp;&nbsp;</span>
-                    <input type="text" className="form-control input__border-radius" defaultValue="30" ref={this.DayToRef} />
+                    <input type="text" className="form-control input__border-radius_left" defaultValue="30" ref={this.DayToRef} />
                 </div>
 
                 <div className="input-group mb-5">
@@ -112,7 +115,7 @@ class RandomYmd extends Component {
                 </div>
 
                 <div className="input-group d-flex justify-content-center">
-                    <button type="button" className="btn btn-success btn__RandomYmd-margin" onClick={this.onRandomYmd}>Random</button>
+                    <button type="button" className="btn purple-gradient text-white btn__RandomYmd-margin" onClick={this.onRandomYmd}>Random</button>
                 </div>
             </div>
         )

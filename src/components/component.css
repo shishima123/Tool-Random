@@ -11,8 +11,25 @@
     box-shadow: 10px 10px 6px -6px #777;
 }
 
-.input__border-radius {
-    border-radius: unset;
+.input__border-radius_left {
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-left-radius: 0.25rem !important;
+}
+
+.input__border-radius_right {
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-right-radius: 0.25rem !important;
+}
+
+.textarea__border-radius_top {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.label__border-radius_bottom {
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0.25rem !important;
+    border-bottom: none;
 }
 
 .btn__RandomYmd-margin {

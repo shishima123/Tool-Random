@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './component.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 class RandomString extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class RandomString extends Component {
     }
 
     onRandomString() {
-        const { onRandom, onChangeHeader, header } = this.props;
+        const { onRandom, onChangeHeader, header, onNotify } = this.props;
 
         let prefix = this.prefixRef.current.value;
         let from = Number(this.fromRef.current.value);
@@ -57,6 +58,7 @@ class RandomString extends Component {
 
         onRandom(result);
         onChangeHeader(header[1]);
+        onNotify();
     }
 
     onChangeLen() {
@@ -83,7 +85,7 @@ class RandomString extends Component {
         } else {
             isDisable = false;
         }
-            this.setState({isDisable: isDisable})
+        this.setState({ isDisable: isDisable })
 
     }
 
@@ -92,31 +94,31 @@ class RandomString extends Component {
             <div className="col-3 text-right content__shadow bg-white py-4 rounded">
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text lable__input-width">Prefix</span>
+                        <span className="input-group-text lable__input-width cloudy-knoxville-gradient">Prefix</span>
                     </div>
                     <input type="text" className="form-control" ref={this.prefixRef} onChange={this.onChangeLen} />
-                    <div className="input-group-append">
-                        <span className="input-group-text">{this.state.length}</span>
+                    <div className="input-group-append ">
+                        <span className="input-group-text cloudy-knoxville-gradient">{this.state.length}</span>
                     </div>
                 </div>
 
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text lable__input-width" >From</span>
+                        <span className="input-group-text lable__input-width cloudy-knoxville-gradient" >From</span>
                     </div>
                     <input type="text" className="form-control" defaultValue="000" ref={this.fromRef} />
                 </div>
 
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text lable__input-width" >To</span>
+                        <span className="input-group-text lable__input-width cloudy-knoxville-gradient" >To</span>
                     </div>
                     <input type="text" className="form-control" defaultValue="100" ref={this.toRef} onChange={this.onChangeLen} />
                 </div>
 
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <label className="input-group-text lable__input-width">Type</label>
+                        <label className="input-group-text lable__input-width cloudy-knoxville-gradient">Type</label>
                     </div>
                     <select className="form-control" ref={this.typeRef} onChange={this.onChangeSelectBox}>
                         <option value='random'>Random</option>
@@ -126,13 +128,13 @@ class RandomString extends Component {
 
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text lable__input-width">Quantity</span>
+                        <span className="input-group-text lable__input-width cloudy-knoxville-gradient">Quantity</span>
                     </div>
-                    <input type="text" className="form-control" defaultValue="10" ref={this.qtyRef} onChange={this.onChangeLen} disabled={(this.state.isDisable) ? true : '' }/>
+                    <input type="text" className="form-control" defaultValue="10" ref={this.qtyRef} onChange={this.onChangeLen} disabled={(this.state.isDisable) ? true : ''} />
                 </div>
 
                 <div className="input-group d-flex justify-content-center">
-                    <button type="button" className="btn btn-primary" onClick={this.onRandomString}>Random</button>
+                    <button type="button" className="btn blue-gradient text-white" onClick={this.onRandomString}>Random</button>
                 </div>
             </div>
         )
