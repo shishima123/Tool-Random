@@ -66,15 +66,7 @@ class RandomString extends Component {
         let lenPrefix = prefix.length;
         let to = this.toRef.current.value;
         let lenTo = to.length;
-        let qty = this.qtyRef.current.value;
-        let lenQty = qty.length;
-        let type = this.typeRef.current.value;
-        let length = 0;
-        if (type === 'random') {
-            length = lenPrefix + lenTo;
-        } else {
-            length = lenPrefix + lenQty;
-        }
+        let length = lenPrefix + lenTo;
         this.setState({ length: length })
     }
 
@@ -130,7 +122,7 @@ class RandomString extends Component {
                     <div className="input-group-prepend">
                         <span className="input-group-text lable__input-width cloudy-knoxville-gradient">Quantity</span>
                     </div>
-                    <input type="text" className="form-control" defaultValue="10" ref={this.qtyRef} onChange={this.onChangeLen} disabled={(this.state.isDisable) ? true : ''} />
+                    <input type="text" className="form-control" defaultValue="10" ref={this.qtyRef} disabled={(this.state.isDisable) ? true : ''} />
                 </div>
 
                 <div className="input-group d-flex justify-content-center">

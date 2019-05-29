@@ -15,6 +15,7 @@ class TextArea extends Component {
         if (header.bgColor !== 'bg-danger') {
             className += "text-white " + header.bgColor;
         }
+
         return (
             <div className="col-3 text-right content__shadow bg-white py-4 mx-3 rounded">
                 <div className="input-group">
