@@ -26,7 +26,9 @@ class RandomYmd extends Component {
         let DayTo = Number(this.DayToRef.current.value);
         let qty = Number(this.qtyRef.current.value);
         let result = '';
-        if (!this.chkValidateInput('Year', YearFr, YearTo)) {
+        if (isNaN(YearFr) || isNaN(YearTo) || isNaN(MonthFr) || isNaN(MonthTo) || isNaN(DayFr) || isNaN(DayTo) || isNaN(qty)) {
+            alert('The input value must be the number.');
+        } else if (!this.chkValidateInput('Year', YearFr, YearTo)) {
             alert('Please check Year value.');
         } else if (!this.chkValidateInput('Month', MonthFr, MonthTo)) {
             alert('Please check Month value.');
@@ -54,10 +56,10 @@ class RandomYmd extends Component {
                 }
                 result += year.toString() + month.toString() + day.toString() + "\r";
             }
+            onRandom(result);
+            onChangeHeader(header[2]);
+            onNotify();
         }
-        onRandom(result);
-        onChangeHeader(header[2]);
-        onNotify();
     }
 
     chkValidateInput(type, From, To) {

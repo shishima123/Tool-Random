@@ -29,12 +29,13 @@ class RandomString extends Component {
         let qty = Number(this.qtyRef.current.value);
         let result = '';
         if (from === '' || to === '') {
-            alert('Please enter From-To.')
+            alert('Please enter From-To.');
         } else if (isNaN(from) || isNaN(to)) {
-            alert('From - To must number.')
-        }
-        else if (from > to) {
-            alert('From is bigger than To. Please re-enter correctly.')
+            alert('From - To must number.');
+        } else if (isNaN(qty)) {
+            alert('The quantity must be number.');
+        } else if (from > to) {
+            alert('From is bigger than To. Please re-enter correctly.');
         } else {
 
             if (type === 'random') {
@@ -54,11 +55,10 @@ class RandomString extends Component {
                     result += prefix + i + '\r';
                 }
             }
+            onRandom(result);
+            onChangeHeader(header[1]);
+            onNotify();
         }
-
-        onRandom(result);
-        onChangeHeader(header[1]);
-        onNotify();
     }
 
     onChangeLen() {
