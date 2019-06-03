@@ -21,6 +21,11 @@
     border-top-right-radius: 0.25rem !important;
 }
 
+.input__border-left {
+    border-left: none;
+}
+
+
 .textarea__border-radius_top {
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
