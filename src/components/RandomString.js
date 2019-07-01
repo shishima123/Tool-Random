@@ -21,7 +21,7 @@ class RandomString extends Component {
     }
 
     onRandomString() {
-        const { onRandom, onChangeHeader, header, onNotify } = this.props;
+        const { onRandom, onChangeHeader, header, onNotifySuccess, onNotifyFail } = this.props;
 
         let prefix = this.prefixRef.current.value;
         let from = Number(this.fromRef.current.value);
@@ -29,7 +29,6 @@ class RandomString extends Component {
         let type = this.typeRef.current.value;
         let qty = Number(this.qtyRef.current.value);
         let chkbox = Number(this.chkbox.current.checked);
-        console.log(chkbox)
         let result = '';
         if (from === '' || to === '') {
             alert('Please enter From-To.');
@@ -40,7 +39,6 @@ class RandomString extends Component {
         } else if (from > to) {
             alert('From is bigger than To. Please re-enter correctly.');
         } else {
-
             if (type === 'random') {
                 for (let i = 0; i < qty; i++) {
                     let number = Math.floor((Math.random() * ((to + 1) - from)) + from);
@@ -58,13 +56,21 @@ class RandomString extends Component {
                     result += prefix + number + '\r';
                 }
             } else {
-                for (let i = from; i <= to; i++) {
-                    result += prefix + i + '\r';
+                if (to - from < 10000) {
+                    for (let i = from; i <= to; i++) {
+                        result += prefix + i + '\r';
+                    }
+                } else {
+                    alert('List Order Too Large.')
                 }
             }
-            onRandom(result);
-            onChangeHeader(header[1]);
-            onNotify();
+            if (result !== '') {
+                onRandom(result);
+                onChangeHeader(header[1]);
+                onNotifySuccess();
+            } else {
+                onNotifyFail();
+            }
         }
     }
 

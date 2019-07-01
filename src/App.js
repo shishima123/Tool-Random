@@ -20,7 +20,8 @@ class App extends Component {
         }
         this.onChangeHeader = this.onChangeHeader.bind(this);
         this.onRandom = this.onRandom.bind(this);
-        this.onNotify = this.onNotify.bind(this);
+        this.onNotifySuccess = this.onNotifySuccess.bind(this);
+        this.onNotifyFail = this.onNotifyFail.bind(this);
     }
 
     onChangeHeader(item) {
@@ -38,7 +39,7 @@ class App extends Component {
         this.setState({ result: result });
     }
 
-    onNotify() {
+    onNotifySuccess() {
         return toast.success('🦄 Random Complete!', {
             position: "top-right",
             autoClose: 3000,
@@ -48,7 +49,18 @@ class App extends Component {
             draggable: false,
             className: 'rotateY animated'
         });
+    }
 
+    onNotifyFail() {
+        return toast.error('🦄 Random Fail!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            className: 'rotateY animated'
+        });
     }
 
     render() {
@@ -69,7 +81,8 @@ class App extends Component {
                             onRandom={this.onRandom}
                             onChangeHeader={this.onChangeHeader}
                             header={this.state.feature}
-                            onNotify={this.onNotify}
+                            onNotifySuccess={this.onNotifySuccess}
+                            onNotifyFail={this.onNotifyFail}
                         />
                         {
                             getFeature.map((item, index) =>
@@ -85,7 +98,8 @@ class App extends Component {
                             onRandom={this.onRandom}
                             onChangeHeader={this.onChangeHeader}
                             header={this.state.feature}
-                            onNotify={this.onNotify}
+                            onNotifySuccess={this.onNotifySuccess}
+                            onNotifyFail={this.onNotifyFail}
                         />
 
                         <ToastContainer

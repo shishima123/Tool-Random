@@ -16,7 +16,7 @@ class RandomYmd extends Component {
     }
 
     onRandomYmd() {
-        const { onRandom, onChangeHeader, header, onNotify } = this.props;
+        const { onRandom, onChangeHeader, header, onNotifySuccess, onNotifyFail } = this.props;
 
         let YearFr = Number(this.YearFrRef.current.value);
         let YearTo = Number(this.YearToRef.current.value);
@@ -56,9 +56,14 @@ class RandomYmd extends Component {
                 }
                 result += year.toString() + month.toString() + day.toString() + "\r";
             }
-            onRandom(result);
-            onChangeHeader(header[2]);
-            onNotify();
+
+            if (result !== '') {
+                onRandom(result);
+                onChangeHeader(header[2]);
+                onNotifySuccess();
+            } else {
+                onNotifyFail();
+            }
         }
     }
 
